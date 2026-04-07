@@ -1,0 +1,639 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Custom CSS for NWIO Website */
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #004499;
+    --accent-color: #00a8cc;
+    --ocean-blue: #0077be;
+    --coral-orange: #ff6b35;
+    --seaweed-green: #2a9d8f;
+    --sand-tan: #f4a261;
+    --deep-blue: #023047;
+    --light-blue: #caf0f8;
+    --white: #ffffff;
+    --gray-light: #f8f9fa;
+    --gray-medium: #6c757d;
+    --gray-dark: #343a40;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced navbar styling */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: translateY(-2px);
+}
+
+.nav-link {
+    color: var(--deep-blue) !important;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+    transform: translateY(-1px);
+}
+
+/* Hero section enhancements */
+.hero-section {
+    background: linear-gradient(135deg, 
+        rgba(0, 119, 190, 0.1) 0%, 
+        rgba(0, 168, 204, 0.05) 50%, 
+        rgba(42, 157, 143, 0.1) 100%);
+    border: 1px solid rgba(0, 102, 204, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Enhanced card styling */
+.card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    background: var(--white);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 102, 204, 0.15);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: var(--deep-blue);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.card-text {
+    color: var(--gray-medium);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Enhanced buttons */
+.btn {
+    border-radius: 25px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 102, 204, 0.4);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* News and events styling */
+.news-item, .event-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.news-item::before, .event-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 102, 204, 0.05), 
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.news-item:hover, .event-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(0, 102, 204, 0.1);
+}
+
+.news-item:hover::before, .event-item:hover::before {
+    left: 100%;
+}
+
+/* Footer enhancement */
+footer {
+    background: linear-gradient(135deg, var(--deep-blue), var(--primary-color)) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .hero-section {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+    }
+    
+    .card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .navbar-nav .nav-item {
+        margin: 0.5rem 0;
+    }
+
+    .navbar-nav .btn {
+        margin-top: 1rem;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-section .btn-lg {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .display-4 {
+        font-size: 2rem !important;
+    }
+
+    .display-5 {
+        font-size: 1.5rem !important;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+
+    .news-item, .event-item {
+        padding: 1rem;
+    }
+
+    footer .row {
+        text-align: center;
+    }
+
+    footer .d-flex.gap-3 {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 1.5rem 1rem;
+        margin: 0.5rem;
+    }
+
+    .display-4 {
+        font-size: 1.5rem !important;
+    }
+
+    .lead {
+        font-size: 1rem !important;
+    }
+
+    .hero-section .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand img {
+        width: 30px;
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    footer h5 {
+        font-size: 1.1rem;
+    }
+
+    footer h6 {
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile-first touch interactions */
+@media (hover: none) and (pointer: coarse) {
+    .card:hover {
+        transform: none;
+    }
+
+    .card:active {
+        transform: scale(0.98);
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .nav-link:hover::after {
+        width: 0;
+    }
+
+    .nav-link:active::after {
+        width: 80%;
+    }
+}
+
+/* Tablet specific styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+
+    .hero-section {
+        margin: 1.5rem;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+}
+
+/* Large desktop optimizations */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+
+    .hero-section {
+        padding: 4rem 5rem;
+    }
+
+    .display-4 {
+        font-size: 3.5rem !important;
+    }
+}
+
+/* Loading animation */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Hover effects for images */
+.img-hover-zoom {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.img-hover-zoom img {
+    transition: transform 0.5s ease;
+}
+
+.img-hover-zoom:hover img {
+    transform: scale(1.1);
+}
+
+/* Gradient backgrounds */
+.bg-gradient {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+}
+
+.bg-gradient-ocean {
+    background: linear-gradient(135deg, var(--ocean-blue), var(--seaweed-green)) !important;
+}
+
+.bg-gradient-coral {
+    background: linear-gradient(135deg, var(--coral-orange), var(--sand-tan)) !important;
+}
+
+/* Impact statistics section styling */
+.impact-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+}
+
+.impact-section .display-4 {
+    color: white !important;
+    font-weight: 700;
+}
+
+.impact-section .text-white-50 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Project cards styling */
+.project-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 102, 204, 0.15);
+}
+
+.project-number {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+.meta-item {
+    background: rgba(0, 102, 204, 0.05);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.stat-box {
+    border: 1px solid rgba(0, 102, 204, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Ensure gradient backgrounds are visible */
+.bg-gradient,
+.impact-section {
+    background: linear-gradient(135deg, #0066cc, #00a8cc) !important;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Additional gradient variations */
+.bg-gradient-ocean {
+    background: linear-gradient(135deg, #0077be, #2a9d8f) !important;
+}
+
+.bg-gradient-coral {
+    background: linear-gradient(135deg, #ff6b35, #f4a261) !important;
+}
+
+/* Full-page background for home page */
+.full-page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/m12.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Ensure content is above background */
+.hero-section,
+section {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make navigation transparent when background is active */
+body:has(.full-page-background) .navbar {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+body:has(.full-page-background) .nav-link {
+    color: var(--deep-blue) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-label="Ocean conservation banner">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5dd7ff"/>
+      <stop offset="100%" stop-color="#aaf2ff"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#017dbb"/>
+      <stop offset="100%" stop-color="#015080"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="320" fill="url(#sky)"/>
+  <rect y="320" width="1000" height="280" fill="url(#sea)"/>
+  <path d="M0 360c90-25 180-25 270 0s180 25 270 0 180-25 270 0 180 25 270 0v60H0z" fill="#ffffff22"/>
+  <path d="M0 430c90-25 180-25 270 0s180 25 270 0 180-25 270 0 180 25 270 0v75H0z" fill="#ffffff1a"/>
+  <circle cx="860" cy="90" r="40" fill="#fff7b1"/>
+  <text x="40" y="80" fill="#ffffff" font-size="42" font-family="Arial, sans-serif" font-weight="700">NWIO</text>
+  <text x="40" y="120" fill="#ffffff" font-size="24" font-family="Arial, sans-serif">Healthy Oceans, Resilient Communities</text>
+</svg>

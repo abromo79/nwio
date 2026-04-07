@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NWIO - Next Wave Initiative Organization</title>
+    @if (file_exists(public_path('hot')) || file_exists(public_path('build/manifest.json')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <meta name="description" content="Empowering coastal communities in Tanzania through marine conservation, research, and sustainable blue economy solutions.">
+    <meta name="keywords" content="marine conservation, Tanzania, coastal communities, blue economy, ocean research">
+    <meta property="og:title" content="NWIO - Next Wave Initiative Organization">
+    <meta property="og:description" content="Empowering coastal communities in Tanzania through marine conservation and sustainable solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('images/nwio-og-image.jpg') }}">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ route('website.home') }}">
+            <div class="brand-logo">
+                <img src="{{ asset('images/logo.svg') }}" alt="NWIO logo" width="40" class="img-fluid">
+            </div>
+            <span class="brand-text">NWIO</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.about') }}">About Us</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Programs</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'marine-conservation-program') }}">Marine Conservation</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'sustainable-fisheries-program') }}">Sustainable Fisheries</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'seaweed-aquaculture-development-program') }}">Seaweed & Aquaculture</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'ocean-education-youth-leadership-program') }}">Ocean Education & Youth Leadership</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'climate-change-coastal-resilience-program') }}">Climate Change & Coastal Resilience</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.programs.show', 'research-innovation-program') }}">Research & Innovation</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Projects</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ route('website.projects.status', 'ongoing') }}">Ongoing Projects</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.projects.status', 'completed') }}">Completed Projects</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.research') }}">Research & Innovation</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.get-involved') }}">Get Involved</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">News & Events</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ route('website.news') }}">News</a></li>
+                        <li><a class="dropdown-item" href="{{ route('website.events') }}">Events</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.team') }}">Our Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.gallery') }}">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('website.contact') }}">Contact Us</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="py-4">
+    <div class="container">
+        @yield('content')
+    </div>
+</main>
+
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="{{ asset('images/logo.svg') }}" alt="NWIO logo" width="30" class="me-2">
+                    <h5 class="mb-0">NWIO</h5>
+                </div>
+                <p class="small mb-2">Next Wave Initiative Organization</p>
+                <p class="small text-muted">Protecting Tanzania's Marine Future</p>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" class="text-white text-decoration-none">
+                        <i class="bi bi-facebook fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white text-decoration-none">
+                        <i class="bi bi-twitter fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white text-decoration-none">
+                        <i class="bi bi-instagram fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white text-decoration-none">
+                        <i class="bi bi-linkedin fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="mb-3">Quick Links</h6>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><a href="{{ route('website.about') }}" class="text-white text-decoration-none">About Us</a></li>
+                            <li class="mb-2"><a href="{{ route('website.programs.show', 'marine-conservation-program') }}" class="text-white text-decoration-none">Programs</a></li>
+                            <li class="mb-2"><a href="{{ route('website.get-involved') }}" class="text-white text-decoration-none">Get Involved</a></li>
+                            <li class="mb-2"><a href="{{ route('website.contact') }}" class="text-white text-decoration-none">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="mb-3">Contact Info</h6>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2">
+                                <i class="bi bi-envelope me-2"></i>info@nwio.or.tz
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-telephone me-2"></i>+255 123 456 789
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-geo-alt me-2"></i>Dar es Salaam, Tanzania
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="border-secondary my-3">
+        <div class="d-flex justify-content-between align-items-center small">
+            <span>&copy; {{ date('Y') }} NWIO. All rights reserved.</span>
+            <div>
+                <a href="{{ route('admin.dashboard') }}" class="text-white text-decoration-none me-3">
+                    <i class="bi bi-gear me-1"></i>Admin Panel
+                </a>
+                <a href="#" class="text-white text-decoration-none">Privacy Policy</a>
+                <span class="mx-2">|</span>
+                <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
