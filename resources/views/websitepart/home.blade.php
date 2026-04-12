@@ -1,6 +1,110 @@
 @extends('layouts.website')
 
 @section('content')
+
+<!-- Welcome Section with Sliding Background -->
+<div class="welcome-slider-section position-relative mb-5" style="height: 600px; overflow: hidden;">
+    <!-- Sliding Background Images -->
+    <div class="slider-background">
+        <div class="slide active" style="background-image: url('{{ asset('images/m1.jpeg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/m12.jpeg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/m24.jpeg') }}');"></div>
+    </div>
+    
+    <!-- Dark Overlay for Text Visibility -->
+    <div class="overlay-dark" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+    
+    <!-- Welcome Message Overlay -->
+    <div class="welcome-message-overlay position-absolute top-50 start-50 translate-middle text-center text-white" style="z-index: 2;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-4">
+                        <h1 class="display-2 fw-bold mb-3 text-white">Welcome to NWIO</h1>
+                        <p class="lead mb-4 text-white">Empowering coastal communities in Tanzania through marine conservation, research, and sustainable blue economy solutions.</p>
+                        <div class="d-flex gap-3 justify-content-center flex-wrap">
+                            <a class="btn btn-primary btn-lg" href="{{ route('website.get-involved') }}">
+                                Get Involved <i class="bi bi-arrow-right ms-2"></i>
+                            </a>
+                            <a class="btn btn-outline-light btn-lg" href="{{ route('website.about') }}">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slider Indicators -->
+    <div class="slider-indicators position-absolute bottom-0 start-50 translate-middle" style="z-index: 3;">
+        <button class="indicator active" data-slide="0"></button>
+        <button class="indicator" data-slide="1"></button>
+        <button class="indicator" data-slide="2"></button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const totalSlides = slides.length;
+    
+    // Auto-slide functionality
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            slide.style.opacity = '0';
+        });
+        
+        // Remove active class from all indicators
+        indicators.forEach((indicator, i) => {
+            indicator.classList.remove('active');
+        });
+        
+        // Show current slide
+        slides[index].classList.add('active');
+        slides[index].style.opacity = '1';
+        
+        // Add active class to current indicator
+        indicators[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+    
+    // Auto-slide every 4 seconds
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }, 4000);
+    
+    // Manual slide control with indicators
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Pause auto-slide on hover
+    const sliderSection = document.querySelector('.welcome-slider-section');
+    sliderSection.addEventListener('mouseenter', () => {
+        // Pause auto-slide on hover
+        clearInterval(window.autoSlideInterval);
+    });
+    
+    sliderSection.addEventListener('mouseleave', () => {
+        // Resume auto-slide when not hovering
+        window.autoSlideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }, 4000);
+    });
+});
+</script>
+
+
 <!-- Hero Section -->
 <div class="hero-section p-4 p-md-5 mb-5 fade-in">
     <div class="row align-items-center">

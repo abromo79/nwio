@@ -65,6 +65,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('website.team') }}">Our Team</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('website.gallery') }}">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('website.contact') }}">Contact Us</a></li>
+                
             </ul>
         </div>
     </div>
@@ -81,7 +82,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="{{ asset('images/n2.jpeg') }}" alt="NWIO logo" width="30" class="me-2">
+                    <img src="{{ asset('images/logo.svg') }}" alt="NWIO logo" width="30" class="me-2">
                     <h5 class="mb-0">NWIO</h5>
                 </div>
                 <p class="small mb-2">Next Wave Initiative Organization</p>

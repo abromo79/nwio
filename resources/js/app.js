@@ -44,26 +44,18 @@ function initScrollAnimations() {
 // Enhanced navbar effects
 function initNavbarEffects() {
     const navbar = document.querySelector('.navbar');
-    let lastScrollY = window.scrollY;
+    if (!navbar) {
+        return;
+    }
 
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
-        
-        // Add shadow on scroll
+
         if (currentScrollY > 10) {
             navbar.classList.add('navbar-scrolled');
         } else {
             navbar.classList.remove('navbar-scrolled');
         }
-
-        // Hide/show navbar on scroll
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = currentScrollY;
     });
 }
 

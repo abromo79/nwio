@@ -213,18 +213,37 @@
     </div>
     <div class="map-container card border-0 shadow-lg">
         <div class="card-body p-0">
-            <div class="ratio ratio-16x9">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.123456!2d39.208332!3d-6.156667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    class="rounded-3">
-                </iframe>
-            </div>
+            <div id="nwio-map" style="height: 400px; width: 100%;"></div>
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize OpenStreetMap with Leaflet
+    var map = L.map('nwio-map').setView([-6.205253371140088, 39.215330082522655], 15);
+    
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    
+    // Add marker for NWIO office location
+    var marker = L.marker([-6.205253371140088, 39.215330082522655]).addTo(map);
+    
+    // Add popup with office information
+    marker.bindPopup('<b>NWIO Headquarters</b><br>Coastal Tanzania<br>Near Marine Conservation Center<br>Dar es Salaam, Tanzania').openPopup();
+    
+    // Add circle to show area coverage
+    L.circle([-6.205253371140088, 39.215330082522655], {
+        color: '#0066cc',
+        fillColor: '#0066cc',
+        fillOpacity: 0.1,
+        radius: 500
+    }).addTo(map);
+});
+</script>
 
 <!-- FAQ Section -->
 <section class="mb-5">
