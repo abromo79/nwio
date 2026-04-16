@@ -114,16 +114,24 @@ class AdminPanelController extends Controller
 
     public function storeProgram(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:150',
-            'description' => 'required|string',
-            'objectives' => 'required|string',
-            'image' => 'nullable|image|max:2048',
-        ]);
-        $data['slug'] = Str::slug($data['name']);
-        $data['image'] = $this->storeFile($request, 'image', 'programs');
-        DB::table('programs')->insert($data + ['created_at' => now(), 'updated_at' => now()]);
-        return back();
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:150',
+                'description' => 'required|string',
+                'objectives' => 'required|string',
+                'image' => 'nullable|image|max:2048',
+            ]);
+            
+            $data['slug'] = Str::slug($data['name']);
+            $data['image'] = $this->storeFile($request, 'image', 'programs');
+            
+            DB::table('programs')->insert($data + ['created_at' => now(), 'updated_at' => now()]);
+            
+            return back()->with('success', 'Program created successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error storing program: ' . $e->getMessage());
+            return back()->with('error', 'Error creating program: ' . $e->getMessage())->withInput();
+        }
     }
 
     public function updateProgram(Request $request, int $id)
@@ -367,32 +375,47 @@ class AdminPanelController extends Controller
 
     public function storeUser(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
-            'role' => 'required|in:admin,editor,staff',
-        ]);
-        $data['password'] = Hash::make($data['password']);
-        DB::table('users')->insert($data + ['created_at' => now(), 'updated_at' => now()]);
-        return back();
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:100',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:6',
+                'role' => 'required|in:admin,editor,staff',
+            ]);
+            
+            $data['password'] = Hash::make($data['password']);
+            DB::table('users')->insert($data + ['created_at' => now(), 'updated_at' => now()]);
+            
+            return back()->with('success', 'User created successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error storing user: ' . $e->getMessage());
+            return back()->with('error', 'Error creating user: ' . $e->getMessage())->withInput();
+        }
     }
 
     public function updateUser(Request $request, int $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:6',
-            'role' => 'required|in:admin,editor,staff',
-        ]);
-        if (!empty($data['password'])) {
-            $data['password'] = Hash::make($data['password']);
-        } else {
-            unset($data['password']);
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:100',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'nullable|string|min:6',
+                'role' => 'required|in:admin,editor,staff',
+            ]);
+            
+            if (!empty($data['password'])) {
+                $data['password'] = Hash::make($data['password']);
+            } else {
+                unset($data['password']);
+            }
+            
+            DB::table('users')->where('id', $id)->update($data + ['updated_at' => now()]);
+            
+            return back()->with('success', 'User updated successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error updating user: ' . $e->getMessage());
+            return back()->with('error', 'Error updating user: ' . $e->getMessage())->withInput();
         }
-        DB::table('users')->where('id', $id)->update($data + ['updated_at' => now()]);
-        return back();
     }
 
     public function destroyUser(int $id)
@@ -407,7 +430,28 @@ class AdminPanelController extends Controller
             return null;
         }
 
-        $path = $request->file($field)->store("nwio/{$folder}", 'public');
-        return '/storage/' . $path;
+        try {
+            $file = $request->file($field);
+            
+            // Check if file is valid
+            if (!$file->isValid()) {
+                \Log::error("Invalid file upload for field: {$field}");
+                return null;
+            }
+            
+            // Create directory if it doesn't exist
+            $directory = storage_path("app/public/nwio/{$folder}");
+            if (!is_dir($directory)) {
+                mkdir($directory, 0755, true);
+            }
+            
+            $path = $file->store("nwio/{$folder}", 'public');
+            \Log::info("File stored successfully: {$path}");
+            
+            return '/storage/' . $path;
+        } catch (\Exception $e) {
+            \Log::error("Error storing file: " . $e->getMessage());
+            return null;
+        }
     }
 }

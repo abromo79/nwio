@@ -226,6 +226,119 @@ nav.navbar {
     }
 }
 
+/* Team Page Styles */
+.team-hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-radius: 1rem;
+}
+
+.team-hero-icon {
+    opacity: 0.8;
+}
+
+/* Organization Structure Section */
+.org-structure-section {
+    margin-bottom: 3rem;
+}
+
+.org-structure-container {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.org-structure-container img {
+    transition: transform 0.3s ease;
+}
+
+.org-structure-container:hover img {
+    transform: scale(1.02);
+}
+
+/* Team Member Cards */
+.team-member-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.avatar-placeholder {
+    transition: all 0.3s ease;
+}
+
+.team-member-card:hover .avatar-placeholder {
+    transform: scale(1.05);
+}
+
+.member-contact a {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.member-contact a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Department Cards */
+.department-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+}
+
+.department-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.department-icon {
+    transition: all 0.3s ease;
+}
+
+.department-card:hover .department-icon {
+    transform: scale(1.1);
+}
+
+.team-count .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+/* Join Team Section */
+.join-team-section .card {
+    border-radius: 1rem;
+}
+
+.join-team-section .btn {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.join-team-section .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-hero-section {
+        text-align: center;
+    }
+    
+    .team-hero-icon {
+        margin-top: 2rem;
+    }
+    
+    .org-structure-container img {
+        max-height: 400px;
+        object-fit: contain;
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
